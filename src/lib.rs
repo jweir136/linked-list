@@ -22,6 +22,10 @@ impl<T> Node<T> {
     pub fn set_data(&mut self, data: T) {
         self.data = data;
     }
+
+    pub fn set_next(&mut self, next: Option<Box<Node<T>>>) {
+        self.next = next;
+    }
 }
 
 #[cfg(test)]
@@ -48,5 +52,13 @@ mod tests {
         n1.set_data(1 as u32);
 
         assert_eq!(*n1.get_data(), 1);
+    }
+
+    #[test]
+    fn node_setnext_test() {
+        let n1 = Node::<u32>::new(0 as u32, Option::None);
+        let mut n2 = Node::<u32>::new(1 as u32, Option::Some(Box::new(n1)));
+
+        n2.set_next(Option::None);
     }
 }
