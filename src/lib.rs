@@ -10,6 +10,10 @@ impl<T> Node<T> {
             next: next
         }
     }
+
+    pub fn get_data(&self) -> &T {
+        &self.data
+    }
 }
 
 #[cfg(test)]
@@ -20,5 +24,13 @@ mod tests {
     fn node_new_test() {
         let n1 = Node::<u32>::new(0, Option::None);
         let n2 = Node::<u32>::new(1, Option::Some(Box::new(n1)));
+    }
+
+    #[test]
+    fn node_getdata_test() {
+        let n1 = Node::<u32>::new(0 as u32, Option::None);
+        let n2 = Node::<u32>::new(1 as u32, Option::Some(Box::new(n1)));
+
+        assert_eq!(*n2.get_data(), 1);
     }
 }
