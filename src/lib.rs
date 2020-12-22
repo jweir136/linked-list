@@ -14,6 +14,10 @@ impl<T> Node<T> {
     pub fn get_data(&self) -> &T {
         &self.data
     }
+
+    pub fn get_next(&self) -> Option<&Box<Node<T>>> {
+        self.next.as_ref()
+    }
 }
 
 #[cfg(test)]
